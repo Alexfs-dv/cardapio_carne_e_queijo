@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carne & Queijo</title>
+    <title>Cardápio Online</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color:#ddd;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         .container {
             max-width: 900px;
@@ -17,10 +18,11 @@
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0.9;
         }
         header {
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             background-color: #343a40;
             color: #fff;
         }
@@ -31,11 +33,19 @@
             margin: 20px 0;
         }
         .item {
-            border-bottom: 4px solid #ddd;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #ddd;
             padding: 10px 0;
         }
         .item:last-child {
             border-bottom: none;
+        }
+        .item img {
+            max-width: 100px;
+            margin-right: 20px;
+            cursor: pointer;
+            border-radius: 8px;
         }
         .item h2 {
             margin: 0 0 5px;
@@ -51,6 +61,50 @@
             font-weight: bold;
             color: #28a745;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Rodapé */
+        footer {
+            font-size: 0.8em;
+            text-align: center;
+            padding: 6px;
+            background-color: #343a40;
+            color: #fff;
+            width: 100%;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
@@ -61,36 +115,85 @@
     <div class="container">
         <section class="cardapio-section">
             <div class="item">
-                <h2>Tradicional</h2>
-                <p>Hambúrguer artesanal de 180g, com um toque de molho de maionese e ervas frescas, coberto com queijo gouda derretido. Picles de pepino e cebolas grelhadas no pão brioche criam uma harmonia irresistível de sabores e texturas.</p>
-                <p class="price">R$ 35,00</p>
+                <img src="./img/Tradicional.jpg" alt="Hambúrguer Tradicional" onclick="openModal('./img/Tradicional.jpg')">
+                <div>
+                    <h2>Tradicional</h2>
+                    <p>Hambúrguer artesanal de 180g, com um toque de molho de maionese e ervas frescas, coberto com queijo gouda derretido. Picles de pepino e cebolas grelhadas no pão brioche criam uma harmonia irresistível de sabores e texturas.</p>
+                    <p class="price">R$ 35,00</p>
+                </div>
             </div>
             <div class="item">
-                <h2>Clássico</h2>
-                <p>Hambúrguer artesanal de 160g, complementado por um molho de mostarda Dijon e mel, e queijo gruyère derretido. Servido no pão brioche com tomates grelhados, para um sabor sofisticado e inigualável.</p>
-                <p class="price">R$ 38,00</p>
+                <img src="./img/Clássico.jpg" alt="Hambúrguer Clássico" onclick="openModal('./img/Clássico.jpg')">
+                <div>
+                    <h2>Clássico</h2>
+                    <p>Hambúrguer artesanal de 160g, complementado por um molho de mostarda Dijon e mel, e queijo gruyère derretido. Servido no pão brioche com tomates grelhados, para um sabor sofisticado e inigualável.</p>
+                    <p class="price">R$ 38,00</p>
+                </div>
             </div>
             <div class="item">
-                <h2>Da Casa</h2>
-                <p>Hambúrguer artesanal de 200g, coroado com molho barbecue, queijo provolone defumado, suculenta cebola caramelizada e picles de pepino. Servido no pão brioche com tomates grelhados, para uma experiência de sabor rica e harmoniosa.</p>
-                <p class="price">R$ 39,00</p>
+                <img src="./img/Da Casa.jpg" alt="Hambúrguer Da Casa" onclick="openModal('./img/Da Casa.jpg')">
+                <div>
+                    <h2>Da Casa</h2>
+                    <p>Hambúrguer artesanal de 200g, coroado com molho barbecue, queijo provolone defumado, suculenta cebola caramelizada e picles de pepino. Servido no pão brioche com tomates grelhados, para uma experiência de sabor rica e harmoniosa.</p>
+                    <p class="price">R$ 39,00</p>
+                </div>
             </div>
             <div class="item">
-                <h2>Magro</h2>
-                <p>Hambúrguer artesanal de 140g, temperado na medida certa. A combinação do molho de iogurte e hortelã com queijo emmental derretido traz um frescor único. Servido no pão brioche com rúcula e tomates frescos.</p>
-                <p class="price">R$ 33,00</p>
+                <img src="./img/Magro.jpg" alt="Hambúrguer Magro" onclick="openModal('./img/Magro.jpg')">
+                <div>
+                    <h2>Magro</h2>
+                    <p>Hambúrguer artesanal de 140g, temperado na medida certa. A combinação do molho de iogurte e hortelã com queijo emmental derretido traz um frescor único. Servido no pão brioche com rúcula e tomates frescos.</p>
+                    <p class="price">R$ 33,00</p>
+                </div>
             </div>
             <div class="item">
-                <h2>Fit</h2>
-                <p>Hambúrguer artesanal de 120g  complementado por um molho cremoso de abacate e limão. O queijo cottage adiciona um toque de sofisticação, enquanto o pão brioche, rúcula,alface americana, pepino em rodelas e tomates frescos harmonizam para criar uma experiência leve e refrescante.</p>
-                <p class="price">R$ 25,00</p>
+                <img src="./img/Carne e Queijo Smash.jpg" alt="Carne e Queijo Smash" onclick="openModal('./img/Carne e Queijo Smash.jpg')">
+                <div>
+                    <h2>Carne e Queijo Smash</h2>
+                    <p>Hambúrguer artesanal de 140g com duas fatias de cheddar, pão brioche tostado na manteiga e uma suculenta camada de ketchup.</p>
+                    <p class="price">R$ 25,00</p>
+                </div>
             </div>
             <div class="item">
-                <h2>Kids</h2>
-                <p>Hambúrguer artesanal de 100g, suculento e saboroso, coberto com queijo cheddar derretido e servido com um toque de ketchup no pão brioche mini, macio e delicioso. </p>
-                <p class="price">R$ 15,00</p>
+                <img src="./img/Fit.jpg" alt="Hambúrguer Fit" onclick="openModal('./img/Fit.jpg')">
+                <div>
+                    <h2>Fit</h2>
+                    <p>Hambúrguer artesanal de 120g complementado por um molho cremoso de abacate e limão. O queijo cottage adiciona um toque de sofisticação, enquanto o pão brioche, rúcula, alface americana, pepino em rodelas e tomates frescos harmonizam para criar uma experiência leve e refrescante.</p>
+                    <p class="price">R$ 25,00</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="./img/Kids.jpg" alt="Hambúrguer Kids" onclick="openModal('./img/Kids.jpg')">
+                <div>
+                    <h2>Kids</h2>
+                    <p>Hambúrguer artesanal de 100g, suculento e saboroso, coberto com queijo cheddar derretido e servido com um toque de ketchup no pão brioche mini, macio e delicioso.</p>
+                    <p class="price">R$ 15,00</p>
+                </div>
             </div>
         </section>
     </div>
+    
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Carne & Queijo. Todos os direitos reservados.</p>
+        <p>Rua Moacir Ramos de Jesus, 1566 - Santo André, Ribas do Rio Pardo - MS</p>
+        <p>Peça pelo WhatsApp: (67) 99620-1070</p>
+    </footer>
+
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById('imageModal').style.display = "block";
+            document.getElementById('modalImage').src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+    </script>
 </body>
 </html>
