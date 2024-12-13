@@ -1,203 +1,320 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Online</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color:#ddd;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        .container {
-            font-size: 1.5em;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            opacity: 0.9;
-        }
-        header {
-            text-align: center;
-            padding: 20px;
-            background-color: #343a40;
-            color: #fff;
-            font-size: 1.5em;
-        }
-        h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-        .cardapio-section {
-            margin: 20px 0;
-        }
-        .item {
-            display: flex;
-            align-items: center;
-            border-bottom: 2px solid #ddd;
-            padding: 10px 0;
-        }
-        .item:last-child {
-            border-bottom: none;
-        }
-        .item img {
-            max-width: 200px;
-            height: auto;
-            margin-right: 20px;
-            cursor: pointer;
-            border-radius: 8px;
-        }
-        .item h2 {
-            margin: 0 0 5px;
-            font-size: 1.2em;
-            color: #343a40;
-        }
-        .item p {
-            margin: 0;
-            color: #555;
-        }
-        .price {
-            padding-top: 12px;
-            font-weight: bold;
-            color: #28a745;
-        }
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        /* Rodapé */
-        footer {
-            font-size: 0.9em;
-            text-align: center;
-            padding: 6px;
-            background-color: #343a40;
-            color: #fff;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <title>Carne & Queijo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
-<body>
-    <header>
-        <h1>Carne & Queijo</h1>
-        <p>Homemade Burger</p>
-    </header>
-    <div class="container">
-        <section class="cardapio-section">
-            <div class="item">
-                <img src="./img/Tradicional.jpg" alt="Hambúrguer Tradicional" onclick="openModal('./img/Tradicional.jpg')">
-                <div>
-                    <h2>Tradicional</h2>
-                    <p>Hambúrguer artesanal de 180g, com um toque de molho de maionese e ervas frescas, coberto com queijo gouda derretido. Picles de pepino e cebolas grelhadas no pão brioche criam uma harmonia irresistível de sabores e texturas.</p>
-                    <p class="price">R$ 35,00</p>
-                </div>
+<style>
+    a{
+        text-decoration: none;
+        color: #000;
+    }
+    .carousel-inner img{
+        height: 100vh;
+        object-fit: cover;
+    }
+    .mascara{
+        content:" ";
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;        
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+     .mascara-card{
+        margin: 30px 20px;             
+        background-color: rgba(0,0,0,0.4);
+        z-index: 1;        
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .containerSlide{
+        position: relative;
+    }
+    .descricao{
+        font-size: 36px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px #ffc107;
+        line-height: 48px;
+    }
+    #descricaoP{
+        border-top: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        padding: 12px;
+        width: 95%;
+        margin-top: 16px;
+        line-height: 16px;
+        background-color: transparent;
+    }
+    #gourmet{
+        color: rgb(255,193,7);
+        font-size: 56px;
+        align-item: center;
+    }
+    #verdade{
+        color: №fff;
+        font-size: 56px;
+    }
+    
+    .produtos {
+  padding: 50px 0;
+  background-color: rgba(72,70,80,0.8);
+  color: #fff;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  color: #fff;
+}
+.card-img-overlay{
+    background-color: rgba(0,0,0,0.4);
+    margin: 15% 10% ;
+    display:flex;
+    flex-direction: column;
+    justify-contente: space-around;
+}
+
+.produtos img{
+    width: 100%;
+    height: 480px;
+}
+
+.contato {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.contato h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.contato ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contato li {
+  margin-bottom: 10px;
+}
+
+.contato a {
+  text-decoration: none;
+  color: #337ab7;
+}
+
+.contato a:hover {
+  color: #23527c;
+}
+.botoes{
+    display:flex;
+    width: 100%;
+    justify-content: center;    
+}
+#btn-contato{
+    background-color: rgba(255,193,7, 0.3);
+    border: 2px solid rgb(255,193,7)
+}
+#btn-contato a{
+    color: #fff;
+}
+</style>
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg text-dark bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Carne & Queijo</a>
+            <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#produtos">Menu</a>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
             </div>
-            <div class="item">
-                <img src="./img/Clássico.jpg" alt="Hambúrguer Clássico" onclick="openModal('./img/Clássico.jpg')">
-                <div>
-                    <h2>Clássico</h2>
-                    <p>Hambúrguer artesanal de 160g, complementado por um molho de mostarda Dijon e mel, e queijo gruyère derretido. Servido no pão brioche com tomates grelhados, para um sabor sofisticado e inigualável.</p>
-                    <p class="price">R$ 38,00</p>
-                </div>
+        </div>
+    </nav>
+
+    <div class="containerSlide">
+        <div class="mascara">
+            <span class="descricao">OPÇÃO<span id="gourmet">GOURMET</span> DE <span id="verdade">VERDADE!</span></span>
+            <p id="descricaoP">Blend de carnes nobres, queijos finos, ingredientes selecionados, molhos que intensificam os sabores, tudo combinado proporciona uma experiência gastronômica rica e sofisticada!</p>
+            <div class="botoes">
+                <button class="btn btn-warning mt-5 fs-3"><a href="#produtos">Menu</a></button>
+            <button class="btn btn-warning mt-5 ms-3 fs-3" id="btn-contato"><a href="#contato">Contato</a></button>
             </div>
-            <div class="item">
-                <img src="./img/Da Casa.jpg" alt="Hambúrguer Da Casa" onclick="openModal('./img/Da Casa.jpg')">
-                <div>
-                    <h2>Da Casa</h2>
-                    <p>Hambúrguer artesanal de 200g, coroado com molho barbecue, queijo provolone defumado, suculenta cebola caramelizada e picles de pepino. Servido no pão brioche com tomates grelhados, para uma experiência de sabor rica e harmoniosa.</p>
-                    <p class="price">R$ 39,00</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./img/Magro.jpg" alt="Hambúrguer Magro" onclick="openModal('./img/Magro.jpg')">
-                <div>
-                    <h2>Magro</h2>
-                    <p>Hambúrguer artesanal de 140g, temperado na medida certa. A combinação do molho de iogurte e hortelã com queijo emmental derretido traz um frescor único. Servido no pão brioche com rúcula e tomates frescos.</p>
-                    <p class="price">R$ 33,00</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./img/Carne e Queijo Smash.jpg" alt="Carne e Queijo Smash" onclick="openModal('./img/Carne e Queijo Smash.jpg')">
-                <div>
-                    <h2>Carne e Queijo Smash</h2>
-                    <p>Hambúrguer artesanal de 140g com duas fatias de cheddar, pão brioche tostado na manteiga e uma suculenta camada de ketchup.</p>
-                    <p class="price">R$ 25,00</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./img/Fit.jpg" alt="Hambúrguer Fit" onclick="openModal('./img/Fit.jpg')">
-                <div>
-                    <h2>Fit</h2>
-                    <p>Hambúrguer artesanal de 120g complementado por um molho cremoso de abacate e limão. O queijo cottage adiciona um toque de sofisticação, enquanto o pão brioche, rúcula, alface americana, pepino em rodelas e tomates frescos harmonizam para criar uma experiência leve e refrescante.</p>
-                    <p class="price">R$ 25,00</p>
-                </div>
-            </div>
-            <div class="item">
-                <img src="./img/Kids.jpg" alt="Hambúrguer Kids" onclick="openModal('./img/Kids.jpg')">
-                <div>
-                    <h2>Kids</h2>
-                    <p>Hambúrguer artesanal de 100g, suculento e saboroso, coberto com queijo cheddar derretido e servido com um toque de ketchup no pão brioche mini, macio e delicioso.</p>
-                    <p class="price">R$ 15,00</p>
-                </div>
-            </div>
-        </section>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./img/img3.jpg" class="d-block w-100 img-fluid" alt="Imagem 3">
+    </div> 
+  </div>            
+</div>            
     </div>
     
-    <!-- Modal -->
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
+    <section id="produtos" class="produtos">
+  <div class="container">
+    <h2 class="text-center mb-5">Nossos Hambúrgueres</h2>
+    <div class="row">
+      <!-- Produto 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/magro.png" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Magro</h5>
+            <p class="card-text">Hambúrguer artesanal de 140g. A combinação do molho de iogurte e hortelã com queijo emmental derretido traz um frescor único. Servido no pão brioche, tostado na manteiga, com rúcula e tomates frescos</p>
+            <p class="card-text font-weight-bold">R$ 33,00</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produto 2 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/tradicional.png" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Tradicional</h5>
+            <p class="card-text">Hambúrguer artesanal de 180g, com molho de maionese e ervas frescas, acompanhado de queijo gouda derretido, picles de pepino e cebolas grelhadas. Servido no pão brioche tostado na manteiga, criam uma harmonia irresistível de sabores e texturas.</p>
+            <p class="card-text font-weight-bold">R$ 35,00</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produto 3 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/dacasa.png" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Da Casa</h5>
+            <p class="card-text">Hambúrguer artesanal de 200g, coroado com molho barbecue, queijo provolone defumado, suculenta cebola caramelizada, picles de pepino e tomates grelhados. Servido no pão brioche tostado na manteiga.</p>
+            <p class="card-text font-weight-bold">R$ 39,00</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produto 3 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/img2.jpg" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Clássico</h5>
+            <p class="card-text">Hambúrguer artesanal de 160g, complementado por um molho de mostarda e mel, queijo gruyère derretido e tomates grelhados. Servido no pão brioche tostado na manteiga. Uma combinação sofisticada e inigualável.</p>
+            <p class="card-text font-weight-bold">R$ 38,00</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produto 3 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/smash.jpg" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Carne e Queijo Smash</h5>
+            <p class="card-text">Hambúrguer artesanal de 140g, coberto com 2 fatias de cheddar, pão brioche tostado na manteiga e uma suculenta camada de ketchup.</p>
+            <p class="card-text font-weight-bold">R$ 25,00</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Produto 3 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/fit.jpg" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Fit</h5>
+            <p class="card-text">Hambúrguer artesanal de 120g coberto com molho de abacate, queijo cottage, rúcula, alface americana, pepino em rodelas e tomates frescos, servido no pão brioche tostado na manteiga. Uma experiência leve e refrescante.</p>
+            <p class="card-text font-weight-bold">R$ 28,00</p>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- Produto 3 -->
+            <div class="col-md-4 mb-4">
+        <div class="card text-white">
+          <img src="./img/kids.jpg" class="card-img" alt="Hambúrguer 1">
+          <div class="card-img-overlay">
+            <h5 class="card-title">Kids</h5>
+            <p class="card-text">Hambúrguer artesanal de 100g, suculento e saboroso, coberto com queijo cheddar derretido e servido com um toque de ketchup no pão brioche, macio e delicioso.</p>
+            <p class="card-text font-weight-bold">R$ 15,00</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <footer>
-        <p>&copy; 2024 Carne & Queijo. Todos os direitos reservados.</p>
-        <p>Rua Moacir Ramos de Jesus, 1566 - Santo André, Ribas do Rio Pardo - MS</p>
-        <p>Peça pelo WhatsApp: (67) 99620-1070</p>
-    </footer>
+<section id="contato" class="contato bg-warning">
+  <div class="container py-1">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Informações de Contato</h3>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-envelope"></i> carneequeijohomemadeburguer@gmail.com</li>
+          <li><i class="bi bi-whatsapp"></i> (67) 99620-1070</li>
+          <li><i class="bi bi-geo-alt"></i> Rua Moacir Ramos de Jesus, 1566 - Santo André - Ribas do Rio Pardo - MS</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3>Redes Sociais</h3>
+        <ul class="list-unstyled">
+          <li><a class="text-dark" href="#" target="_blank"><i class="bi bi-facebook fs-5 me-2"></i> Facebook</a></li>
+          <li><a class="text-dark" href="https://www.instagram.com/_carneequeijo/?igsh=NGJuZzBxc3VueXBz" target="_blank"><i class="bi bi-instagram fs-5 me-2"></i> Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        function openModal(imageSrc) {
-            document.getElementById('imageModal').style.display = "block";
-            document.getElementById('modalImage').src = imageSrc;
-        }
+<section class="rodape bg-dark text-light p-3">
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+</div>
+<div class="text-center">
+<p>&copy;2024 Carne & Queijo - Todos os direitos reservados.</p>
+</div>
+</div>
+</section>
 
-        function closeModal() {
-            document.getElementById('imageModal').style.display = "none";
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
