@@ -157,6 +157,13 @@
 #btn-contato a{
     color: #fff;
 }
+.adicionaisP{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #fff;
+    padding: 4px;
+}
+
 </style>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg text-dark bg-warning">
@@ -291,11 +298,11 @@
           <img src="./img/fundo_adicionais.jpg" class="card-img" alt="adicionais">
           <div class="card-img-overlay" id="adicionais">
             <h5 class="card-title">ADICIONAIS:</h5>
-            <p class="card-text">
-                Hambúrguer ------------------- R$ 9,00<br>
-                Bacon -------------------------- R$ 5,00<br>
-                Salada(alface,rúcula e tomate)-R$ 5,00<br> 
-            </p>
+            <div class="card-text">
+                <p class="adicionaisP mb-2"><span>Hambúrguer</span><span>R$ 10,00</span></p>
+                <p class="adicionaisP mb-2"><span>Bacon</span><span>R$ 7,00</span</p>
+                <p class="adicionaisP"><span>Salada(alface,rúcula e tomate)</span><span>R$ 5,00</span></p> 
+            </div>
             <p class="card-text font-weight-bold"></p>
           </div>
         </div>
