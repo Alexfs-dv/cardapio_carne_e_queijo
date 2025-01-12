@@ -164,6 +164,22 @@
     padding: 4px;
 }
 
+.precos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.precos p {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  text-align: center;
+  padding: 2px;
+}
+
+
+
 </style>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-lg text-dark bg-warning">
@@ -213,8 +229,11 @@
           <img src="./img/magro.png" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Magro</h5>
-            <p class="card-text">Hambúrguer artesanal de 120g, molho de iogurte e hortelã, queijo minas derretido. Servido no pão brioche, tostado na manteiga, com rúcula e tomates frescos</p>
-            <p class="card-text font-weight-bold">R$ 29,00</p>
+            <p class="card-text">Hambúrguer artesanal, molho de iogurte e hortelã, queijo minas derretido. Servido no pão brioche tostado na manteiga, com rúcula e tomates frescos</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 29,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 140g</span><span>R$ 33,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -222,11 +241,14 @@
       <!-- Produto 2 -->
             <div class="col-md-4 mb-4">
         <div class="card text-white">
-          <img src="./img/tradicional_01.jpg" class="card-img" alt="Hambúrguer 1">
+          <img src="./img/tradicional.png" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Tradicional</h5>
-            <p class="card-text">Hambúrguer artesanal de 120g, molho da casa, queijo minas derretido, picles de pepino e cebolas grelhadas. Servido no pão brioche tostado na manteiga.</p>
-            <p class="card-text font-weight-bold">R$ 27,00</p> 
+            <p class="card-text">Hambúrguer artesanal, molho de maionese e ervas frescas, queijo minas derretido, picles de pepino e cebolas grelhadas. Servido no pão brioche tostado na manteiga.</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 27,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 180g</span><span>R$ 35,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -237,8 +259,11 @@
           <img src="./img/dacasa.png" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Da Casa</h5>
-            <p class="card-text">Hambúrguer artesanal de 120g, molho da casa, queijo minas, cebola caramelizada, picles de pepino e tomates grelhados. Servido no pão brioche tostado na manteiga.</p>
-            <p class="card-text font-weight-bold">R$ 29,00</p>
+            <p class="card-text">Hambúrguer artesanal, molho barbecue, queijo minas, cebola caramelizada, picles de pepino e tomates grelhados. Servido no pão brioche tostado na manteiga.</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 29,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 200g</span><span>R$ 39,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -249,8 +274,11 @@
           <img src="./img/img2.jpg" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Clássico</h5>
-            <p class="card-text">Hambúrguer artesanal de 120g, molho de mostarda e mel, queijo minas derretido e tomates grelhados. Servido no pão brioche tostado na manteiga.</p>
-            <p class="card-text font-weight-bold">R$ 30,00</p>
+            <p class="card-text">Hambúrguer artesanal, molho de mostarda e mel, queijo minas derretido e tomates grelhados. Servido no pão brioche tostado na manteiga.</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 27,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 180g</span><span>R$ 38,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -261,8 +289,11 @@
           <img src="./img/smash.jpg" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Carne e Queijo Smash</h5>
-            <p class="card-text">Hambúrguer artesanal de 100g, coberto com 2 fatias de cheddar, pão brioche tostado na manteiga e uma suculenta camada de ketchup.</p>
-            <p class="card-text font-weight-bold">R$ 20,00</p>
+            <p class="card-text">Hambúrguer artesanal, coberto com 2 fatias de cheddar, pão brioche tostado na manteiga e uma suculenta camada de ketchup.</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 20,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 140g</span><span>R$ 25,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -273,8 +304,11 @@
           <img src="./img/img8.jpg" class="card-img" alt="Hambúrguer 1">
           <div class="card-img-overlay">
             <h5 class="card-title">Fit</h5>
-            <p class="card-text">Hambúrguer artesanal de 120g coberto com molho de abacate, queijo cottage, rúcula, alface americana, pepino em rodelas e tomates frescos, servido no pão brioche tostado na manteiga. Uma experiência leve e refrescante.</p>
-            <p class="card-text font-weight-bold">R$ 28,00</p>
+            <p class="card-text">Hambúrguer artesanal, molho de iogurte e hortelã, queijo cottage, rúcula, alface, pepino em rodelas e tomates frescos, servido no pão brioche tostado na manteiga.</p>
+            <div class=" precos">
+              <p class="font-weight-bold preco"><span>Hambúrguer 100g</span><span>R$ 28,00</span></p>
+              <p class="font-weight-bold preco"><span>Hambúrguer 180g</span><span>R$ 33,00</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -291,24 +325,22 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
             <div class="col-md-4 mb-4">
         <div class="card text-white">
           <img src="./img/fundo_adicionais.jpg" class="card-img" alt="adicionais">
           <div class="card-img-overlay" id="adicionais">
             <h5 class="card-title">ADICIONAIS:</h5>
             <div class="card-text">
-                <p class="adicionaisP mb-2"><span>Hambúrguer</span><span>R$ 10,00</span></p>
+                <p class="adicionaisP mb-2"><span>Burguer (120g carne+queijo)</span><span>R$ 15,00</span></p>
                 <p class="adicionaisP mb-2"><span>Bacon</span><span>R$ 7,00</span</p>
-                <p class="adicionaisP"><span>Salada(alface,rúcula e tomate)</span><span>R$ 5,00</span></p> 
+                <p class="adicionaisP"><span>Salada (alface,rúcula e tomate)</span><span>R$ 5,00</span></p> 
             </div>
             <p class="card-text font-weight-bold"></p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
 </section>
 
 <section id="contato" class="contato bg-warning">
